@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Forty by HTML5 UP</title>
+		<title>Away Fromm Office</title>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="/images/favicon/favicon.ico"
+		/>
 		<meta charset="utf-8" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
+		<link rel="stylesheet" href="sweetalert2.min.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css"
+			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript
 			><link rel="stylesheet" href="assets/css/noscript.css"
 		/></noscript>
 	</head>
-	<body class="is-preload">
+	<body class="is-preload" id="top">
 		<!-- Wrapper -->
 		<div id="wrapper">
 			<!-- Header -->
 			<header id="header" class="alt">
-				<a href="index.html" class="logo"
-					><strong>Forty</strong>
-					<span>by HTML5 UP</span></a
-				>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
@@ -34,18 +35,19 @@
 			<!-- Menu -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="landing.html">Landing</a></li>
-					<li><a href="generic.html">Generic</a></li>
-					<li><a href="elements.html">Elements</a></li>
+					<li><a href="#top">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact Us</a></li>
 				</ul>
 				<ul class="actions stacked">
 					<li>
-						<a href="#" class="button primary fit"
+						<a
+							href="#"
+							class="button primary fit"
+							onclick="handleComingSoon()"
 							>Get Started</a
 						>
 					</li>
-					<li><a href="#" class="button fit">Log In</a></li>
 				</ul>
 			</nav>
 
@@ -66,8 +68,9 @@
 						<ul class="actions">
 							<li>
 								<a
-									href="#one"
+									href="#"
 									class="button next scrolly"
+									onclick="handleComingSoon()"
 									>Get Started</a
 								>
 							</li>
@@ -79,20 +82,22 @@
 			<!-- Main -->
 			<div id="main">
 				<!-- One -->
-				<section id="one" class="tiles">
+				<section id="about" class="tiles">
 					<article>
 						<span class="image">
 							<img src="images/pic01.jpg" alt="" />
 						</span>
 						<header class="major">
 							<h3>
-								<a
-									href="landing.html"
-									class="link"
-									>Aliquam</a
+								<a href="#about"
+									>Affordable, Unforgettable
+									Retreats</a
 								>
 							</h3>
-							<p>Ipsum dolor sit amet</p>
+							<p>
+								Our top priority is to design
+								epic experiences for your budget
+							</p>
 						</header>
 					</article>
 					<article>
@@ -101,13 +106,16 @@
 						</span>
 						<header class="major">
 							<h3>
-								<a
-									href="landing.html"
-									class="link"
-									>Tempus</a
+								<a href="#about"
+									>Tailored to You</a
 								>
 							</h3>
-							<p>feugiat amet tempus</p>
+							<p>
+								We plan every detail
+								specifically for your company’s
+								needs, ensuring the best
+								experience possible
+							</p>
 						</header>
 					</article>
 					<article>
@@ -116,13 +124,16 @@
 						</span>
 						<header class="major">
 							<h3>
-								<a
-									href="landing.html"
-									class="link"
-									>Magna</a
+								<a href="#about"
+									>Hassle-Free Booking</a
 								>
 							</h3>
-							<p>Lorem etiam nullam</p>
+							<p>
+								Your perfect offsite is just a
+								few clicks away. Leave all the
+								logistics and tough details to
+								us
+							</p>
 						</header>
 					</article>
 					<article>
@@ -131,43 +142,15 @@
 						</span>
 						<header class="major">
 							<h3>
-								<a
-									href="landing.html"
-									class="link"
-									>Ipsum</a
-								>
+								<a href="#about"
+									>Full service
+								</a>
 							</h3>
-							<p>Nisl sed aliquam</p>
-						</header>
-					</article>
-					<article>
-						<span class="image">
-							<img src="images/pic05.jpg" alt="" />
-						</span>
-						<header class="major">
-							<h3>
-								<a
-									href="landing.html"
-									class="link"
-									>Consequat</a
-								>
-							</h3>
-							<p>Ipsum dolor sit amet</p>
-						</header>
-					</article>
-					<article>
-						<span class="image">
-							<img src="images/pic06.jpg" alt="" />
-						</span>
-						<header class="major">
-							<h3>
-								<a
-									href="landing.html"
-									class="link"
-									>Etiam</a
-								>
-							</h3>
-							<p>Feugiat amet tempus</p>
+							<p>
+								Every aspect of your offsite is
+								planned and booked, no hassle
+								whatsoever
+							</p>
 						</header>
 					</article>
 				</section>
@@ -176,27 +159,28 @@
 				<section id="two">
 					<div class="inner">
 						<header class="major">
-							<h2>Massa libero</h2>
+							<h2>
+								Leave the work desk, find
+								inspiration instead
+							</h2>
 						</header>
 						<p>
-							Nullam et orci eu lorem consequat
-							tincidunt vivamus et sagittis libero.
-							Mauris aliquet magna magna sed nunc
-							rhoncus pharetra. Pellentesque
-							condimentum sem. In efficitur ligula
-							tate urna. Maecenas laoreet massa vel
-							lacinia pellentesque lorem ipsum
-							dolor. Nullam et orci eu lorem
-							consequat tincidunt. Vivamus et
-							sagittis libero. Mauris aliquet magna
-							magna sed nunc rhoncus amet pharetra
-							et feugiat tempus.
+							From intimate cabins in the woods or
+							Costa Rican beaches to grand ballrooms
+							and bright lights, our curated list of
+							venues ensures the perfect setting for
+							your event. Experience spaces that
+							foster creativity and collaboration,
+							chosen with your goals in mind. We’ll
+							book and arrange the place, all you
+							need to do is to have a good time.
 						</p>
 						<ul class="actions">
 							<li>
 								<a
-									href="landing.html"
+									href="#"
 									class="button next"
+									onclick="handleComingSoon()"
 									>Get Started</a
 								>
 							</li>
@@ -239,6 +223,7 @@
 										name="message"
 										id="message"
 										rows="6"
+										placeholder="Tell us a bit about your upcoming event and your company. How many people do you plan on having attend approximately? What kind of catering do you want? Do you want some place by the beach or something out in the mountains?"
 									></textarea>
 								</div>
 							</div>
@@ -246,14 +231,8 @@
 								<li>
 									<input
 										type="submit"
-										value="Send Message"
+										value="Contact Us"
 										class="primary"
-									/>
-								</li>
-								<li>
-									<input
-										type="reset"
-										value="Clear"
 									/>
 								</li>
 							</ul>
@@ -266,8 +245,9 @@
 									class="icon solid alt fa-envelope"
 								></span>
 								<h3>Email</h3>
-								<a href="#"
-									>information@untitled.tld</a
+								<a
+									href="mailto:contact@awayfromoffice.co?subject=Interested in Booking Company Offsite"
+									>contact@awayfromoffice.co</a
 								>
 							</div>
 						</section>
@@ -277,24 +257,11 @@
 									class="icon solid alt fa-phone"
 								></span>
 								<h3>Phone</h3>
-								<span
-									>(000) 000-0000
-									x12387</span
-								>
-							</div>
-						</section>
-						<section>
-							<div class="contact-method">
-								<span
-									class="icon solid alt fa-home"
-								></span>
-								<h3>Address</h3>
-								<span
-									>1234 Somewhere Road
-									#5432<br />
-									Nashville, TN 00000<br />
-									United States of
-									America</span
+								<a href="tel:+15105603795"
+									><span
+										>(510)
+										560-3795</span
+									></a
 								>
 							</div>
 						</section>
@@ -305,60 +272,12 @@
 			<!-- Footer -->
 			<footer id="footer">
 				<div class="inner">
-					<ul class="icons">
-						<li>
-							<a
-								href="#"
-								class="icon brands alt fa-twitter"
-								><span class="label"
-									>Twitter</span
-								></a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="icon brands alt fa-facebook-f"
-								><span class="label"
-									>Facebook</span
-								></a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="icon brands alt fa-instagram"
-								><span class="label"
-									>Instagram</span
-								></a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="icon brands alt fa-github"
-								><span class="label"
-									>GitHub</span
-								></a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								class="icon brands alt fa-linkedin-in"
-								><span class="label"
-									>LinkedIn</span
-								></a
-							>
-						</li>
-					</ul>
 					<ul class="copyright">
-						<li>&copy; Untitled</li>
 						<li>
-							Design:
-							<a href="https://html5up.net"
-								>HTML5 UP</a
-							>
+							&copy;
+							<span id="copy"></span>
+							Away From Office, LLC
+							<p id="copy"></p>
 						</li>
 					</ul>
 				</div>
@@ -366,6 +285,37 @@
 		</div>
 
 		<!-- Scripts -->
+
+		<script>
+			document.getElementById(
+				'copy'
+			).innerHTML = `${new Date().getFullYear()}`;
+
+			const handleComingSoon = async () => {
+				const { value: email } = await Swal.fire({
+					title: 'Coming Soon!',
+					imageUrl: '/images/megaphone.png',
+					imageWidth: 120,
+					imageHeight: 120,
+					imageAlt: 'Announcement',
+					input: 'email',
+					inputLabel:
+						"Leave your email here and we'll reach out when we're ready to plan your offsite.",
+					inputPlaceholder: 'Email Address',
+					confirmButtonText: 'Contact Us',
+				});
+
+				if (email) {
+					Swal.fire({
+						title: 'Thank you for reaching out!',
+						text: `We'\'ve notified our team and are going to come up with an outline for your event. We'\ll be getting back to you at ${email} with more information shortly.`,
+					});
+				}
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+		<script src="sweetalert2.min.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
