@@ -5,6 +5,10 @@
 	scroll-behavior: smooth;
 }
 
+::selection {
+	background-color: #f0a830;
+}
+
 html,
 body,
 div,
