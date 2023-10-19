@@ -28,7 +28,7 @@
 			<!-- Header -->
 			<header id="header" class="alt">
 				<nav>
-					<a href="#menu">Menu</a>
+					<a href="#menu"></a>
 				</nav>
 			</header>
 
@@ -193,7 +193,10 @@
 			<section id="contact">
 				<div class="inner">
 					<section>
-						<form method="post" action="#">
+						<form
+							action="https://formspree.io/f/xrgwrwdn"
+							method="POST"
+						>
 							<div class="fields">
 								<div class="field half">
 									<label for="name"
@@ -203,6 +206,7 @@
 										type="text"
 										name="name"
 										id="name"
+										required
 									/>
 								</div>
 								<div class="field half">
@@ -210,9 +214,10 @@
 										>Email</label
 									>
 									<input
-										type="text"
+										type="email"
 										name="email"
 										id="email"
+										required
 									/>
 								</div>
 								<div class="field">
@@ -223,7 +228,7 @@
 										name="message"
 										id="message"
 										rows="6"
-										placeholder="Tell us a bit about your upcoming event and your company. How many people do you plan on having attend approximately? What kind of catering do you want? Do you want some place by the beach or something out in the mountains?"
+										placeholder="Tell us a bit about your upcoming event and your company (i.e. Number of people attending, type of industry, preferred locations, and do you want catering services?)"
 									></textarea>
 								</div>
 							</div>
@@ -285,7 +290,6 @@
 		</div>
 
 		<!-- Scripts -->
-
 		<script>
 			document.getElementById(
 				'copy'
@@ -298,14 +302,19 @@
 					imageWidth: 120,
 					imageHeight: 120,
 					imageAlt: 'Announcement',
-					input: 'email',
-					inputLabel:
-						"Leave your email here and we'll reach out when we're ready to plan your offsite.",
+					showConfirmButton: false,
 					inputPlaceholder: 'Email Address',
-					confirmButtonText: 'Contact Us',
+					html: '<form action="https://formspree.io/f/mjvqjqdk" id="newsletter-form" method="POST"><p>Leave your email here and we\'ll reach out when we\'re ready to plan your offsite.</p><label for="email" /><input type="email" name="email" placeholder="Email Address" required /><button id="newsletter-submit" type="submit">Contact Us</button></form>',
 				});
 
 				if (email) {
+					document.getElementById(
+						'newsletter-email'
+					).innerHTML = email;
+					document
+						.getElementById('newsletter-form')
+						.submit();
+
 					Swal.fire({
 						title: 'Thank you for reaching out!',
 						text: `We'\'ve notified our team and are going to come up with an outline for your event. We'\ll be getting back to you at ${email} with more information shortly.`,
