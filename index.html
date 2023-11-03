@@ -330,6 +330,25 @@
 		<!-- Scripts -->
 		<script src="//embed.typeform.com/next/embed.js"></script>
 		<script>
+			const apiKey =
+				'tfp_BFF1SsUf3Ww7WDmxzXY755Pdk79dBLCqNwsEmdGt3RFR_epMcpRdr6T8a'; // You need an API key to make this request
+			const formId = 'C6eVTV5z'; // Replace with your actual Form ID
+
+			fetch(`https://api.typeform.com/forms/${formId}/responses`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${apiKey}`,
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					// The response data will be in the 'data' variable
+					console.log(data);
+					// Now, you can process the data and store it in a JavaScript object.
+				})
+				.catch((error) => console.error(error));
+		</script>
+		<script>
 			document.getElementById(
 				'copy'
 			).innerHTML = `${new Date().getFullYear()}`;
