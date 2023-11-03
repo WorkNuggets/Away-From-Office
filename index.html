@@ -43,10 +43,19 @@
 					<li>
 						<a
 							href="#"
+							onclick="handleTypeform()"
 							class="button primary fit"
-							onclick="handleComingSoon()"
-							>Get Started</a
 						>
+							<div
+								data-tf-popup="C6eVTV5z"
+								data-tf-opacity="95"
+								data-tf-iframe-props="title=Offsite Planning Form"
+								data-tf-transitive-search-params
+								data-tf-medium="snippet"
+							>
+								Get Started
+							</div>
+						</a>
 					</li>
 				</ul>
 			</nav>
@@ -70,9 +79,17 @@
 								<a
 									href="#"
 									class="button scrolly"
-									onclick="handleComingSoon()"
-									>Get Started</a
 								>
+									<div
+										data-tf-popup="C6eVTV5z"
+										data-tf-opacity="95"
+										data-tf-iframe-props="title=Offsite Planning Form"
+										data-tf-transitive-search-params
+										data-tf-medium="snippet"
+									>
+										Get Started
+									</div>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -193,12 +210,17 @@
 						</p>
 						<ul class="actions">
 							<li>
-								<a
-									href="#"
-									class="button"
-									onclick="handleComingSoon()"
-									>Get Started</a
-								>
+								<a href="#" class="button">
+									<div
+										data-tf-popup="C6eVTV5z"
+										data-tf-opacity="95"
+										data-tf-iframe-props="title=Offsite Planning Form"
+										data-tf-transitive-search-params
+										data-tf-medium="snippet"
+									>
+										Get Started
+									</div>
+								</a>
 							</li>
 						</ul>
 					</div>
@@ -306,10 +328,13 @@
 		</div>
 
 		<!-- Scripts -->
+		<script src="//embed.typeform.com/next/embed.js"></script>
 		<script>
 			document.getElementById(
 				'copy'
 			).innerHTML = `${new Date().getFullYear()}`;
+
+			const handleTypeform = async () => {};
 
 			const handleComingSoon = async () => {
 				const { value: email } = await Swal.fire({
