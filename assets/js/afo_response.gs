@@ -30,22 +30,47 @@ function onFormSubmit(e) {
 		vision,
 	] = values;
 
-	const prompt = `Taking the information from this form as a JSON object, build a retreat plan as a JSON object, or in other words an "itenerary" for this person and their business and return the retreat plan / itenerary as a JSON object including:
-  1. "Agenda": A detailed plan of events and scheduling for the event over the ${dRetreat}
-  2. "Tags": Relevant Tags 🏷️
-  3. "KeyTakeaways": Key takeaways 📝, and any additional notes for the client on their upcoming event
-  4. "ActionItems": Action items and/or suggessted recommendations for their upcoming event
-  5. "emailResponse": an email for us to send to ${firstName} ${lastName} from ${companyName} at ${companyEmail} telling them about the Agenda and Itenerary that we have generated for them, including all related ${values} and any other relevant information we can share with them at this time. Remember this must be a JSON object`;
+	const prompt = `Taking the information from this form, build a retreat plan in the form of a structured JSON object. The plan should include the following elements with the exact structure:
+{
+  "AFO": {
+    "Agenda": [{}],
+    "Tags": [],
+    "KeyTakeaways": [],
+    "ActionItems": [],
+    "emailResponse": {
+      "Subject": "",
+      "Body": ""
+    }
+  }
+}
+Fill in the details for a ${dRetreat}-day retreat for ${firstName} ${lastName} from ${companyName}, including all relevant information that can be shared with them at this time. Ensure the plan is comprehensive and tailored to their business needs.
+
+Here is some additional information about the company to help you make decisions on how to build this out:
+- Company Name: ${companyName}
+- Retreat Start Date: ${retreatStartDate}
+- Number of Attendees: ${nAttendees}
+- Number of Days for the Retreat: ${dRetreat}
+- Dynamics of the group: ${groupDynamics}
+- Things the group likes and does not like: ${groupPreferences}
+- Preferred Location Preferences: ${locationPreferences}
+- Specific Destinations they have in mind: ${destinationPreferences}
+- Room Prefrerences: ${roomPreferences}
+- Hotel Preferences: ${hotelPreferences}
+- The feel for this retreat should be ${retreatVibe}
+- Room Reservation for team meeting preferences: ${roomReservationPreferences}
+- The budget for this retreat is in this ballpark of: ${budget}
+- The vision for this retreat is ${vision}`;
 
 	// Analyze the feedback if present
 	if (values) {
 		const analysis = callGPTToAnalyzeFeedback(prompt);
+		const formattedAnalysis = JSON.parse(analysis);
 
 		// Send the analysis to Slack with formatting and emojis
-		sendToSlack(analysis.toString(), email, companyName);
+		sendToSlack(formattedAnalysis, companyEmail, companyName);
 
 		// Update the Google Sheet with tags and categories
-		updateSheetWithTag(range, analysis);
+		updateSheetWithTag(range, formattedAnalysis);
 	}
 }
 
@@ -53,7 +78,7 @@ function onFormSubmit(e) {
 function callGPTToAnalyzeFeedback(prompt) {
 	const url = 'https://api.openai.com/v1/chat/completions';
 	const payload = {
-		model: 'gpt-4-0613',
+		model: 'gpt-4-1106-preview',
 		messages: [
 			{
 				role: 'system',
@@ -64,6 +89,7 @@ function callGPTToAnalyzeFeedback(prompt) {
 				content: prompt,
 			},
 		],
+		response_format: { type: 'json_object' },
 	};
 
 	const params = {
@@ -85,15 +111,26 @@ function callGPTToAnalyzeFeedback(prompt) {
 }
 
 // Function to send the analysis to Slack
-// Function to send the analysis to Slack
 function sendToSlack(analysis, email, companyName) {
+	const { Agenda, Tags, KeyTakeaways, ActionItems, emailResponse } =
+		analysis.AFO;
 	const payload = {
 		text: `🌟 *New Event Agenda* 🌟
     
 👤 *Form Entry From*: ${email}
 
-🥳 *New Event for ${companyName}*: 
-- *Agenda*: ${analysis}`,
+🥳 *New Event for Company: ${companyName}*: 
+- *Agenda* 📅: \`${JSON.stringify(Agenda)}\`,
+
+- *Tags* 🏷️: ${Tags.join(', ')},
+
+- *Key Takeaways* 📝: ${KeyTakeaways.join(', ')},
+
+- *Action Items* 🔥: ${ActionItems.join(', ')},
+
+- *Template Email* 📤: ${emailResponse.Body},
+
+- *Email Subject* 📚: ${emailResponse.Subject}`,
 	};
 
 	const params = {
@@ -110,9 +147,16 @@ function sendToSlack(analysis, email, companyName) {
 
 // Function to update the Google Sheet with tags and categories
 function updateSheetWithTag(range, analysis) {
+	const { Agenda, Tags, KeyTakeaways, ActionItems, emailResponse } =
+		analysis.AFO;
 	const sheet = range.getSheet();
 	const row = range.getRow();
 
 	// Update the Google Sheet in new columns
-	sheet.getRange(`T${row}`).setValue(analysis);
+	sheet.getRange(`T${row}`).setValue(JSON.stringify(Agenda));
+	sheet.getRange(`U${row}`).setValue(Tags.join(', '));
+	sheet.getRange(`V${row}`).setValue(KeyTakeaways.join(', '));
+	sheet.getRange(`W${row}`).setValue(ActionItems.join(', '));
+	sheet.getRange(`X${row}`).setValue(emailResponse.Subject);
+	sheet.getRange(`Y${row}`).setValue(emailResponse.Body);
 }
